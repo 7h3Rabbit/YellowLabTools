@@ -25,7 +25,7 @@ jobs:
         platforms: linux/amd64
         load: true
         tags: ${{ env.TEST_TAG }}
-    - name: Check if webperf_core can run Test 17
+    - name: Check YellowLabTools regression tests
       if: always()
       run: |
         docker run --shm-size=4g -e MAX_OLD_SPACE_SIZE=3000 ${{ env.TEST_TAG }} node node_modules/mocha/bin/mocha.js './test/core/**.js'
