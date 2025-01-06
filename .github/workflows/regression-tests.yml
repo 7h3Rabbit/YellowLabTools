@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
             matrix:
-                os: [ubuntu-latest, windows-latest]
+                os: [ubuntu-22.04, windows-latest]
     steps:
     - name: Check out repository code
       uses: actions/checkout@v4
@@ -15,7 +15,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20.x'
-    - if: ${{ matrix.os == 'ubuntu-latest' }}
+    - if: ${{ matrix.os == 'ubuntu-22.04' }}
       shell: bash
       name: Setup Google Chrome browser (ONLY used for Sitespeed)
       run: |
@@ -27,7 +27,7 @@ jobs:
     - name: Setup npm packages
       run: npm install
       timeout-minutes: 30
-    - if: ${{ matrix.os == 'ubuntu-latest' }}
+    - if: ${{ matrix.os == 'ubuntu-22.04' }}
       name: RUNNING TEST - LINUX
       run: |
          node node_modules/mocha/bin/mocha.js './test/core/**.js'
